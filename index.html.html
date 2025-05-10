@@ -1,0 +1,342 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Aplicación Pastry</title>
+    <link href="https://fonts.googleapis.com/css2?family=Bagel+Fat+One&display=swap" rel="stylesheet">
+    <style>
+        /* Estilos generales */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: "Comic Sans MS", "Comic Sans", cursive;
+        }
+        
+        body {
+            background-color: #f5f5f5;
+            color: #000000;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            padding: 20px;
+        }
+        
+        .container {
+            background-color: white;
+            border-radius: 10px;
+            box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
+            width: 100%;
+            max-width: 800px;
+            padding: 30px;
+            text-align: center;
+            position: relative;
+        }
+        
+        .header {
+            font-family: 'Bagel Fat One', cursive;
+            font-size: 2.5rem;
+            color: #000000; /* Cambiado a negro */
+            margin-bottom: 10px;
+        }
+        
+        h1, h2, h3, button {
+            color: #000000;
+        }
+        
+        h1 {
+            margin-bottom: 30px;
+            font-size: 2rem;
+        }
+        
+        h2 {
+            margin-bottom: 20px;
+            font-size: 1.8rem;
+        }
+        
+        h3 {
+            margin: 15px 0;
+            font-size: 1.5rem;
+        }
+        
+        .footer {
+            margin-top: 30px;
+            font-family: 'Arial', sans-serif;
+            font-size: 0.9rem;
+        }
+        
+        .footer-name {
+            font-family: 'Brush Script MT', cursive;
+            font-size: 1.1rem;
+        }
+        
+        .button-container {
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+            margin-top: 30px;
+        }
+        
+        .button-row {
+            display: flex;
+            justify-content: center;
+            gap: 15px;
+            flex-wrap: wrap;
+        }
+        
+        button {
+            padding: 12px 25px;
+            border: none;
+            border-radius: 5px;
+            font-size: 1rem;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            font-weight: bold;
+            min-width: 200px;
+            font-family: "Comic Sans MS", "Comic Sans", cursive;
+            color: #000000;
+        }
+        
+        button:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+        }
+        
+        /* Colores específicos para cada botón */
+        .consultar, 
+        .preparacion-sal, 
+        .preparacion-dulce, 
+        .preparacion-agridulce,
+        .entradas,
+        .platos-principales,
+        .guarniciones,
+        .salsas,
+        .carnes,
+        .pollo,
+        .pastas,
+        .arroces,
+        .guisos,
+        .postres,
+        .panaderia,
+        .frutas,
+        .bebidas,
+        .carnes-agridulces,
+        .salsas-agridulces,
+        .ensaladas,
+        .platos-asiaticos {
+            background-color: #77DD77;
+        }
+        
+        .crear {
+            background-color: #AEC6CF;
+        }
+        
+        .modificar {
+            background-color: #FFB347;
+        }
+        
+        .salir {
+            background-color: #FF6961;
+        }
+        
+        .atras {
+            background-color: #84B6F4;
+        }
+        
+        .menu-principal {
+            background-color: #FDFD96;
+        }
+        
+        /* Pantallas ocultas inicialmente */
+        .screen {
+            display: none;
+        }
+        
+        /* Pantalla activa */
+        .active {
+            display: block;
+        }
+        
+        .recetario-title {
+            text-transform: capitalize;
+        }
+    </style>
+</head>
+<body>
+    <!-- Pantalla 1 - Menú Principal -->
+    <div class="container screen active" id="pantalla1">
+        <div class="header">BETANIA - BAKERY</div>
+        <h1>Menú Principal</h1>
+        <div class="button-container">
+            <button class="consultar" onclick="mostrarPantalla('pantalla2')">Consultar Recetas</button>
+            <button class="crear" onclick="mostrarPantalla('pantalla3')">Crear Recetas</button>
+            <button class="modificar" onclick="mostrarPantalla('pantalla4')">Modificar Recetas</button>
+            <button class="salir" onclick="salir()">Salir</button>
+        </div>
+        <div class="footer">COPYRIGHT @ Chef <span class="footer-name">Maria del Pilar López</span></div>
+    </div>
+
+    <!-- Pantalla 2 - Recetario -->
+    <div class="container screen" id="pantalla2">
+        <div class="header">BETANIA - BAKERY</div>
+        <h1 class="recetario-title">Recetario</h1>
+        <div class="button-container">
+            <button class="preparacion-sal" onclick="mostrarPantalla('pantalla2_1')">Preparación de Sal</button>
+            <button class="preparacion-dulce" onclick="mostrarPantalla('pantalla2_2')">Preparación Dulce</button>
+            <button class="preparacion-agridulce" onclick="mostrarPantalla('pantalla2_3')">Preparación Agridulce</button>
+            <div class="button-row">
+                <button class="atras" onclick="mostrarPantalla('pantalla1')">Atrás</button>
+                <button class="menu-principal" onclick="mostrarPantalla('pantalla1')">Menú Principal</button>
+                <button class="salir" onclick="salir()">Salir</button>
+            </div>
+        </div>
+        <div class="footer">COPYRIGHT @ Chef <span class="footer-name">Maria del Pilar López</span></div>
+    </div>
+
+    <!-- Pantalla 2.1 - Preparación de Sal -->
+    <div class="container screen" id="pantalla2_1">
+        <div class="header">BETANIA - BAKERY</div>
+        <h1>Preparaciones de Sal</h1>
+        <div class="button-container">
+            <button class="entradas" onclick="enConstruccion()">Entradas</button>
+            <button class="platos-principales" onclick="mostrarPantalla('pantalla2_1_2')">Platos Principales</button>
+            <button class="guarniciones" onclick="enConstruccion()">Guarniciones</button>
+            <button class="salsas" onclick="enConstruccion()">Salsas y Condimento</button>
+            <div class="button-row">
+                <button class="atras" onclick="mostrarPantalla('pantalla2')">Atrás</button>
+                <button class="menu-principal" onclick="mostrarPantalla('pantalla1')">Menú Principal</button>
+                <button class="salir" onclick="salir()">Salir</button>
+            </div>
+        </div>
+        <div class="footer">COPYRIGHT @ Chef <span class="footer-name">Maria del Pilar López</span></div>
+    </div>
+
+    <!-- Pantalla 2.1.2 - Platos Principales -->
+    <div class="container screen" id="pantalla2_1_2">
+        <div class="header">BETANIA - BAKERY</div>
+        <h1>Platos Principales</h1>
+        <div class="button-container">
+            <div class="button-row">
+                <button class="carnes" onclick="enConstruccion()">Carnes</button>
+                <button class="pollo" onclick="enConstruccion()">Pollo</button>
+            </div>
+            <div class="button-row">
+                <button class="pastas" onclick="enConstruccion()">Pastas</button>
+                <button class="arroces" onclick="enConstruccion()">Arroces</button>
+            </div>
+            <div class="button-row">
+                <button class="guisos" onclick="enConstruccion()">Guisos y Sopas</button>
+            </div>
+            <div class="button-row">
+                <button class="atras" onclick="mostrarPantalla('pantalla2_1')">Atrás</button>
+                <button class="menu-principal" onclick="mostrarPantalla('pantalla1')">Menú Principal</button>
+                <button class="salir" onclick="salir()">Salir</button>
+            </div>
+        </div>
+        <div class="footer">COPYRIGHT @ Chef <span class="footer-name">Maria del Pilar López</span></div>
+    </div>
+
+    <!-- Pantalla 2.2 - Preparación Dulce -->
+    <div class="container screen" id="pantalla2_2">
+        <div class="header">BETANIA - BAKERY</div>
+        <h1>Preparación Dulce</h1>
+        <div class="button-container">
+            <button class="postres" onclick="enConstruccion()">Postres</button>
+            <button class="panaderia" onclick="enConstruccion()">Panadería</button>
+            <button class="frutas" onclick="enConstruccion()">Frutas y Afín</button>
+            <button class="bebidas" onclick="enConstruccion()">Bebidas y Otros</button>
+            <div class="button-row">
+                <button class="atras" onclick="mostrarPantalla('pantalla2')">Atrás</button>
+                <button class="menu-principal" onclick="mostrarPantalla('pantalla1')">Menú Principal</button>
+                <button class="salir" onclick="salir()">Salir</button>
+            </div>
+        </div>
+        <div class="footer">COPYRIGHT @ Chef <span class="footer-name">Maria del Pilar López</span></div>
+    </div>
+
+    <!-- Pantalla 2.3 - Preparación Agridulce -->
+    <div class="container screen" id="pantalla2_3">
+        <div class="header">BETANIA - BAKERY</div>
+        <h1>Preparación Agridulce</h1>
+        <div class="button-container">
+            <button class="carnes-agridulces" onclick="enConstruccion()">Carnes Agridulces</button>
+            <button class="salsas-agridulces" onclick="enConstruccion()">Salsas Agridulces</button>
+            <button class="ensaladas" onclick="enConstruccion()">Ensaladas y Frutas</button>
+            <button class="platos-asiaticos" onclick="enConstruccion()">Platos Asiaticos</button>
+            <div class="button-row">
+                <button class="atras" onclick="mostrarPantalla('pantalla2')">Atrás</button>
+                <button class="menu-principal" onclick="mostrarPantalla('pantalla1')">Menú Principal</button>
+                <button class="salir" onclick="salir()">Salir</button>
+            </div>
+        </div>
+        <div class="footer">COPYRIGHT @ Chef <span class="footer-name">Maria del Pilar López</span></div>
+    </div>
+
+    <!-- Pantalla 3 - Crear Recetas (placeholder) -->
+    <div class="container screen" id="pantalla3">
+        <div class="header">BETANIA - BAKERY</div>
+        <h1>Crear Recetas</h1>
+        <p>Página en construcción</p>
+        <div class="button-container">
+            <div class="button-row">
+                <button class="atras" onclick="mostrarPantalla('pantalla1')">Atrás</button>
+                <button class="menu-principal" onclick="mostrarPantalla('pantalla1')">Menú Principal</button>
+                <button class="salir" onclick="salir()">Salir</button>
+            </div>
+        </div>
+        <div class="footer">COPYRIGHT @ Chef <span class="footer-name">Maria del Pilar López</span></div>
+    </div>
+
+    <!-- Pantalla 4 - Modificar Recetas (placeholder) -->
+    <div class="container screen" id="pantalla4">
+        <div class="header">BETANIA - BAKERY</div>
+        <h1>Modificar Recetas</h1>
+        <p>Página en construcción</p>
+        <div class="button-container">
+            <div class="button-row">
+                <button class="atras" onclick="mostrarPantalla('pantalla1')">Atrás</button>
+                <button class="menu-principal" onclick="mostrarPantalla('pantalla1')">Menú Principal</button>
+                <button class="salir" onclick="salir()">Salir</button>
+            </div>
+        </div>
+        <div class="footer">COPYRIGHT @ Chef <span class="footer-name">Maria del Pilar López</span></div>
+    </div>
+
+    <script>
+        // Función para cambiar entre pantallas
+        function mostrarPantalla(idPantalla) {
+            // Oculta todas las pantallas
+            document.querySelectorAll('.screen').forEach(pantalla => {
+                pantalla.classList.remove('active');
+            });
+            
+            // Muestra la pantalla solicitada
+            document.getElementById(idPantalla).classList.add('active');
+        }
+
+        // Función para mostrar mensaje "Página en construcción"
+        function enConstruccion() {
+            alert('Página en Construcción');
+        }
+
+        // Función para salir de la aplicación
+        function salir() {
+            if(confirm('¿Está seguro que desea salir de la aplicación?')) {
+                // En un entorno real, esto cerraría la aplicación
+                // Para una aplicación web, podemos redirigir o cerrar la pestaña
+                window.close(); // Esto solo funciona si la ventana fue abierta por script
+                
+                // Alternativa para mostrar mensaje
+                alert('Aplicación cerrada (en un entorno real se cerraría la aplicación)');
+            }
+        }
+
+        // Inicialización - asegurarse que solo la pantalla 1 está visible al cargar
+        document.addEventListener('DOMContentLoaded', function() {
+            mostrarPantalla('pantalla1');
+        });
+    </script>
+</body>
+</html>
